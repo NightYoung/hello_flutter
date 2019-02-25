@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'StartUp Name Generate',
+      theme: new ThemeData.dark(),
       home: new RandomWords(),
     );
   }
@@ -33,6 +34,11 @@ class RandomWordsState extends State<RandomWords> {
         title: new Center(
           child: new Text("Flutter"),
         ),
+
+        //点击跳转新页面
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved)
+        ],
       ),
       body: _buildSuggestions(),
     );
@@ -82,5 +88,36 @@ class RandomWordsState extends State<RandomWords> {
 
           return _buildRow(_suggest[index]);
         });
+  }
+
+  //路由跳转
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context) {
+          final tiles = _saved.map(
+            (pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.asPascalCase,
+                  style: _bigFont,
+                ),
+              );
+            },
+          );
+          final divided = ListTile.divideTiles(
+            context: context,
+            tiles: tiles,
+          ).toList();
+
+          return new Scaffold(
+            appBar: new AppBar(
+              title: new Text("Saved words"),
+            ),
+            body: new ListView(children: divided),
+          );
+        },
+      ),
+    );
   }
 }
