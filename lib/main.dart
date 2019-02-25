@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// 自定义控件
+//自定义控件
 class RandomWords extends StatefulWidget {
   @override
   createState() => new RandomWordsState();
