@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:hello_flutter/Strings.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,20 +8,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'StartUp Name Generate',
+      title: Strings.titleStr,
       theme: new ThemeData.dark(),
       home: new RandomWords(),
     );
   }
 }
 
-//自定义控件
+//自定义有状态的控件
 class RandomWords extends StatefulWidget {
   @override
   createState() => new RandomWordsState();
 }
 
-//State类
+//控件状态
 class RandomWordsState extends State<RandomWords> {
   final _suggest = <WordPair>[];
   var _saved = new Set<WordPair>();
@@ -32,7 +33,7 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Center(
-          child: new Text("Flutter"),
+          child: new Text(Strings.flutterStr),
         ),
 
         //点击跳转新页面
@@ -112,7 +113,7 @@ class RandomWordsState extends State<RandomWords> {
 
           return new Scaffold(
             appBar: new AppBar(
-              title: new Text("Saved words"),
+              title: new Text(Strings.saveStr),
             ),
             body: new ListView(children: divided),
           );
